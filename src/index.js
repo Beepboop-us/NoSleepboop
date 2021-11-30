@@ -51,7 +51,6 @@ class NoSleep {
         left: "-100%",
         top: "-100%",
       });
-      document.querySelector("body").append(this.noSleepVideo);
 
       this.noSleepVideo.addEventListener("loadedmetadata", () => {
         if (this.noSleepVideo.duration <= 1) {
@@ -116,6 +115,8 @@ class NoSleep {
       this.enabled = true;
       return Promise.resolve();
     } else {
+      // Append video to document body before playing
+      document.querySelector("body").append(this.noSleepVideo);
       let playPromise = this.noSleepVideo.play();
       return playPromise
         .then((res) => {
@@ -144,7 +145,9 @@ class NoSleep {
         this.noSleepTimer = null;
       }
     } else {
+      // Pause output and remove video from DOM
       this.noSleepVideo.pause();
+      document.querySelector("body").removeChild(this.noSleepTimer);
     }
     this.enabled = false;
   }
