@@ -243,7 +243,7 @@ var NoSleep = function () {
       } else {
         // Pause output and remove video from DOM
         this.noSleepVideo.pause();
-        document.querySelector("body").removeChild(this.noSleepTimer);
+        document.querySelector("body").removeChild(this.noSleepVideo);
       }
       this.enabled = false;
     }
