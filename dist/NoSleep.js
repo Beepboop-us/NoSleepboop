@@ -243,7 +243,12 @@ var NoSleep = function () {
       } else {
         // Pause output and remove video from DOM
         this.noSleepVideo.pause();
-        document.querySelector("body").removeChild(this.noSleepVideo);
+        // Unmount in try/catch in case nosleep was never enabled
+        try {
+          document.querySelector("body").removeChild(this.noSleepVideo);
+        } catch (e) {
+          console.warn("Did not unmount video - likely nosleep was never enabled");
+        }
       }
       this.enabled = false;
     }
