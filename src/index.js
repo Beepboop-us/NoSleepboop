@@ -149,7 +149,11 @@ class NoSleep {
       this.noSleepVideo.pause();
       // Unmount in try/catch in case nosleep was never enabled
       try {
-        document.querySelector("body").removeChild(this.noSleepVideo);
+        // Check to see if noSleepVideo is mounted by identifying parent node
+        if (this.noSleepVideo.parentNode) {
+          // If video is mounted, remove it!
+          this.noSleepVideo.parentNode.removeChild(this.noSleepVideo);
+        }
       } catch (e) {
         console.warn(
           "Did not unmount video - likely nosleep was never enabled"
