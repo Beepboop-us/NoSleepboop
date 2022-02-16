@@ -22,8 +22,9 @@ const nativeWakeLock = () =>
   window.navigator.userAgent.indexOf("Samsung") === -1;
 
 class NoSleep {
-  constructor() {
+  constructor({ title }) {
     this.enabled = false;
+    this.videoTitle = title ? title : "No Sleep";
     if (nativeWakeLock()) {
       this._wakeLock = null;
       const handleVisibilityChange = () => {
@@ -39,7 +40,7 @@ class NoSleep {
       // Set up no sleep video element
       this.noSleepVideo = document.createElement("video");
 
-      this.noSleepVideo.setAttribute("title", "Beepboop Speak App");
+      this.noSleepVideo.setAttribute("title", videoTitle);
       this.noSleepVideo.setAttribute("playsinline", "");
 
       this._addSourceToVideo(this.noSleepVideo, "webm", webm);
