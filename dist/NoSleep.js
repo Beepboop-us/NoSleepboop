@@ -147,7 +147,7 @@ var NoSleep = function () {
       // Set up no sleep video element
       this.noSleepVideo = document.createElement("video");
 
-      this.noSleepVideo.setAttribute("title", videoTitle);
+      this.noSleepVideo.setAttribute("title", this.videoTitle);
       this.noSleepVideo.setAttribute("playsinline", "");
 
       this._addSourceToVideo(this.noSleepVideo, "webm", webm);
